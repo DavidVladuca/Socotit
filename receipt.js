@@ -35,14 +35,15 @@ input.addEventListener('change', async () => {
       continue;
     }
 
-    if (/Actieprijs/i.test(line)) {
-      const discountMatch = line.match(/(-?\d+[.,]\d{2})/);
-      if (discountMatch && lastItem) {
+    // Detect Lidl discount lines (offers)
+    if (/Actieprijs|Lidl Plus korting|In prijs verlaagd/i.test(line)) {
+    const discountMatch = line.match(/(-?\d+[.,]\d{2})/);
+    if (discountMatch && lastItem) {
         const discountValue = Math.abs(parseFloat(discountMatch[1].replace(',', '.')));
-        lastItem.discount = discountValue;
+        lastItem.discount = (lastItem.discount || 0) + discountValue;
         lastItem.finalPrice = Math.max(lastItem.finalPrice - discountValue, 0);
-      }
-      continue;
+    }
+    continue;
     }
 
     const qtyMatch = line.match(qtyPrice);
