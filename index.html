@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>David & Popa Debt Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body  id="index-page">
+  <nav class="comic-navbar" onclick="window.location='index.html'">
+  <img src="logo.png" alt="Soco logo" class="comic-logo">
+</nav>
+
+  <h1>💰 David & Popa Tracker</h1>
+
+  <div class="debt-container">
+    <div class="debt-card" id="david-section">
+      <h2>David owes Popa</h2>
+      <ul id="david-list"></ul>
+      <p>Total: €<span id="david-total">0.00</span></p>
+      <button onclick="addDebt('david')">+ Add</button>
+      <button onclick="resetDebts('david')">Socotit</button>
+    </div>
+
+    <div class="debt-card" id="popa-section">
+      <h2>Popa owes David</h2>
+      <ul id="popa-list"></ul>
+      <p>Total: €<span id="popa-total">0.00</span></p>
+      <button onclick="addDebt('popa')">+ Add</button>
+      <button onclick="resetDebts('popa')">Socotit</button>
+    </div>
+  </div>
+
+  <div class="footer-buttons">
+    <button onclick="window.location='receipt.html'">📷 Scan Receipt</button>
+    <button onclick="window.location='history.html'">🕓 View History</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

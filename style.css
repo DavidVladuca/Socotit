@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Bangers', cursive;
+  background: radial-gradient(circle at top left, #fffbe6 0%, #fef08a 30%, #fcd34d 70%);
+  color: #111;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 🧭 NAVBAR */
+.comic-navbar {
+  width: 100%;
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4em 0;
+  border-bottom: 6px solid #facc15;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #000;
+}
+
+.comic-logo {
+  height: 100px;
+  transition: transform 0.2s;
+}
+
+.comic-logo:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+/* 🟡 Comic halftone background */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#000 1px, transparent 1px);
+  background-size: 8px 8px;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* 🎭 HEADINGS */
+h1, h2, h3 {
+  text-shadow: 2px 2px #000;
+  color: #facc15;
+  -webkit-text-stroke: 1px #000;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
+/* 💳 Debt cards */
+.debt-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  margin: 1.5em auto;
+  max-width: 900px;
+  padding: 0 1em;
+}
+
+@media (min-width: 700px) {
+  .debt-container {
+    flex-direction: row;
+  }
+}
+
+.debt-card {
+  flex: 1;
+  background: white;
+  border: 5px solid #000;
+  border-radius: 12px;
+  padding: 1em;
+  box-shadow: 5px 5px 0 #000;
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.debt-card:hover {
+  transform: translate(-3px, -3px);
+}
+
+/* 🟦 Debt card titles: black outline for clarity */
+.debt-card h2 {
+  background: #2563eb;
+  color: white;
+  padding: 0.4em;
+  border: 3px solid #000;
+  border-radius: 8px;
+  font-size: 1.4em;
+  /* subtle black outline */
+  -webkit-text-stroke: 0.5px #000;
+  text-shadow: 1px 1px #000;
+}
+
+.debt-card ul {
+  list-style: none;
+  padding: 0;
+  max-height: 220px;
+  overflow-y: auto;
+  text-align: left;
+}
+
+/* 🧮 BUTTONS */
+button {
+  background: #ef4444;
+  border: 3px solid #000;
+  padding: 0.5em 1.2em;
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'Bangers', cursive;
+  font-size: 1em;
+  letter-spacing: 1px;
+  margin: 0.3em;
+  box-shadow: 3px 3px 0 #000;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+button:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0 #000;
+}
+
+.footer-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  flex-wrap: wrap;
+  margin: 2em 0;
+}
+
+.footer-buttons button:first-child {
+  background: #22c55e;
+}
+
+.footer-buttons button:last-child {
+  background: #2563eb;
+}
+
+/* 🧾 Receipt items */
+.item-row {
+  background: #fff;
+  border: 3px solid #000;
+  border-radius: 10px;
+  margin: 0.4em 0;
+  padding: 0.4em;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.item-row:hover {
+  background: #fef08a;
+}
+
+/* ⚖️ Fraction button – flat, no animation */
+.fraction-btn {
+  background: none;
+  border: none;
+  box-shadow: none;
+  color: #facc15;
+  font-size: 1.4em;
+  cursor: pointer;
+  vertical-align: middle;
+  padding: 0 4px;
+}
+
+.fraction-info {
+  color: #111;
+  font-size: 0.9em;
+  margin-left: 4px;
+}
+
+/* 📜 History page */
+#history-list li {
+  background: #fff;
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  border-radius: 8px;
+  padding: 0.5em 1em;
+  margin: 0.4em auto;
+  max-width: 400px;
+}
+
+/* 🎬 Pop-in effect for cards/items */
+@keyframes popIn {
+  0% { transform: scale(0.5) rotate(-10deg); opacity: 0; }
+  80% { transform: scale(1.05) rotate(2deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.debt-card, .item-row, #history-list li {
+  animation: popIn 0.3s ease;
+}
+
+/* 🎯 Center h1 only on index & receipt pages */
+body#index-page h1,
+body#receipt-page h1 {
+  text-align: center;
+  font-size: 2.4em;
+  color: #facc15;
+  text-shadow: 3px 3px #000;
+  -webkit-text-stroke: 1px #000;
+  margin-top: 1em;
+}
+
+/* 🧾 Center only upload + who paid controls */
+body#receipt-page .receipt-controls {
+  text-align: center;
+  margin-top: 1.2em;
+}
+
+/* 🧾 Center photo input and status text */
+body#receipt-page #photo-input,
+body#receipt-page #status {
+  display: block;
+  margin: 1em auto;
+  text-align: center;
+}
+
+/* 📸 Comic-style file input */
+input[type="file"] {
+  font-family: 'Bangers', cursive;
+  font-size: 1.1em;
+  color: #111;
+  background: #facc15;
+  border: 3px solid #000;
+  border-radius: 10px;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #000;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="file"]:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #000;
+}
+
+/* 💳 Styled dropdown for "Who paid?" */
+select {
+  font-family: 'Bangers', cursive;
+  font-size: 1.1em;
+  color: #111;
+  background: #93c5fd;
+  border: 3px solid #000;
+  border-radius: 10px;
+  padding: 0.4em 1em;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #000;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  margin-left: 0.5em;
+}
+
+select:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #000;
+}
+
+label {
+  font-size: 1.2em;
+  color: #111;
+  text-shadow: 1px 1px #fff;
+  margin-right: 0.5em;
+}
+
+/* ❌ Smaller delete buttons */
+.delete-btn {
+  background: #ef4444;
+  color: white;
+  border: 2px solid #000;
+  border-radius: 6px;
+  padding: 0.15em 0.45em;
+  font-size: 0.9em;
+  margin-left: 6px;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #000;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.delete-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+/* 🕓 History list entries - centered & responsive */
+#history-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin-top: 1.5em;
+}
+
+#history-list li {
+  background: #fff;
+  border: 3px solid #000;
+  box-shadow: 3px 3px 0 #000;
+  border-radius: 8px;
+  padding: 0.6em 1.2em;
+  margin: 0.5em 0;
+  width: 90%;
+  max-width: 450px;
+  text-align: center;
+}
+
+/* "No history yet" message consistent with style */
+#history-list li.no-history {
+  background: #fff8dc;
+  border: 2px dashed #000;
+  color: #000;
+  font-size: 1.1em;
+  box-shadow: none;
+  width: fit-content;
+  padding: 0.6em 1.2em;
+  margin: 1em auto;
+}
+
+/* 🧾 Keep item list centered and padded */
+#items {
+  text-align: left;
+  margin-top: 1em;
+  padding: 0 1.5em;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 🧮 Align totals with items (same margins only) */
+#summary {
+  margin: 1em auto;
+  padding: 0.8em 1.5em;
+  background: none; 
+  border: none;
+  box-shadow: none;
+  max-width: 900px;
+  font-size: 1.1em;
+}
+
+/* 📦 Product box styling */
+.item-row {
+  background: #fff;
+  border: 3px solid #000;
+  border-radius: 10px;
+  margin: 0.6em 0;
+  padding: 0.8em 1em;
+  box-shadow: 3px 3px 0 #000;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+/* 🟡 Hover color (light yellow) */
+.item-row:hover {
+  background: #fff9c4;
+}
+
+/* 🟠 Checked color (darker orange-yellow) */
+.item-row.checked {
+  background: #facc15 !important;
+}
+
+/* Ensure label covers full width */
+.item-row label {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  line-height: 1.5;
+}

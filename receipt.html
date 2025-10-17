@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lidl Receipt Scanner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body id="receipt-page">
+    <nav class="comic-navbar" onclick="window.location='index.html'">
+  <img src="logo.png" alt="Soco logo" class="comic-logo">
+</nav>
+
+  <h1>🧾 Lidl Receipt Scanner</h1>
+
+  <div class="receipt-controls">
+    <label>Who paid?</label>
+    <select id="payer">
+      <option value="david">David</option>
+      <option value="popa">Popa</option>
+    </select>
+  </div>
+
+  <input type="file" id="photo-input" accept="image/*">
+  <p id="status">Upload a Lidl receipt photo.</p>
+
+  <div id="summary">
+    <p>🧮 Selected total: €<span id="selected-sum">0.00</span></p>
+    <p>🧾 Receipt total: €<span id="receipt-sum">0.00</span></p>
+  </div>
+
+  <div id="items"></div>
+
+  <button id="confirm" disabled>Confirm & Add to Debts</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v5.0.4/dist/tesseract.min.js"></script>
+  <script src="receipt.js"></script>
+</body>
+</html>
