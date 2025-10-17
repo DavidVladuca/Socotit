@@ -1,5 +1,22 @@
-let debts = JSON.parse(localStorage.getItem('debts')) || { david: [], popa: [] };
-let history = JSON.parse(localStorage.getItem('history')) || [];
+import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const dataRef = doc(window.db, "soco-data", "shared");
+let debts = { david: [], popa: [] };
+let history = [];
+
+async function loadData() {
+  const snap = await getDoc(dataRef);
+  if (snap.exists()) {
+    const data = snap.data();
+    debts = data.debts || debts;
+    history = data.history || history;
+  }
+  render();
+}
+
+async function saveData() {
+  await setDoc(dataRef, { debts, history });
+}
 
 function render() {
   ['david', 'popa'].forEach(person => {
@@ -52,8 +69,9 @@ function resetDebts(person) {
   });
 
   debts[person] = [];
-  localStorage.setItem('history', JSON.stringify(history));
+  saveData();
   render();
 }
 
 render();
+loadData();

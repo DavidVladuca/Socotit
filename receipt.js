@@ -205,10 +205,21 @@ function updateSelectedSum() {
   selectedSumEl.textContent = total.toFixed(2);
 }
 
-confirmBtn.addEventListener('click', () => {
-  const payer = document.getElementById('payer').value;
-  const debts = JSON.parse(localStorage.getItem('debts')) || { david: [], popa: [] };
+// --- 🔥 FIREBASE SHARED DATA --- //
+import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+// this uses the same database instance created in index.html
+const dataRef = doc(window.db, "soco-data", "shared");
+
+confirmBtn.addEventListener('click', async () => {
+  const payer = document.getElementById('payer').value;
+
+  // load current data from Firestore
+  const snap = await getDoc(dataRef);
+  const data = snap.exists() ? snap.data() : { debts: { david: [], popa: [] }, history: [] };
+  const debts = data.debts;
+
+  // calculate total for selected items
   let selectedTotal = 0;
   detectedItems.forEach((item, idx) => {
     const cb = document.getElementById(`item${idx}`);
@@ -217,6 +228,7 @@ confirmBtn.addEventListener('click', () => {
 
   if (selectedTotal === 0) return alert("No items selected.");
 
+  // update debts for the other person
   const other = payer === 'david' ? 'popa' : 'david';
   debts[other].push({
     amount: selectedTotal,
@@ -224,7 +236,9 @@ confirmBtn.addEventListener('click', () => {
     note: `Lidl receipt (€${receiptTotal.toFixed(2)} total)`
   });
 
-  localStorage.setItem('debts', JSON.stringify(debts));
+  // save the new data to Firestore
+  await setDoc(dataRef, { ...data, debts });
+
   alert(`✅ Added €${selectedTotal.toFixed(2)} to ${other}'s debts.`);
   window.location = "index.html";
 });

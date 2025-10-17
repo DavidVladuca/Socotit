@@ -36,6 +36,25 @@
     <button onclick="window.location='history.html'">🕓 View History</button>
   </div>
 
+  <!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAz_Fmdpft6ugbkDEtD0uA-UPIZxzsYVig",
+    authDomain: "socotit-ed087.firebaseapp.com",
+    projectId: "socotit-ed087",
+    storageBucket: "socotit-ed087.firebasestorage.app",
+    messagingSenderId: "558229904231",
+    appId: "1:558229904231:web:0c3c8b01803827e9d92dc2",
+    measurementId: "G-DB4B531G26"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  window.db = getFirestore(app);
+</script>
+
   <script src="script.js"></script>
 </body>
 </html>

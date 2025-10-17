@@ -34,6 +34,24 @@
   <button id="confirm" disabled>Confirm & Add to Debts</button>
 
   <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v5.0.4/dist/tesseract.min.js"></script>
+  
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAz_Fmdpft6ugbkDEtD0uA-UPIZxzsYVig",
+    authDomain: "socotit-ed087.firebaseapp.com",
+    projectId: "socotit-ed087",
+    storageBucket: "socotit-ed087.firebasestorage.app",
+    messagingSenderId: "558229904231",
+    appId: "1:558229904231:web:0c3c8b01803827e9d92dc2",
+    measurementId: "G-DB4B531G26"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  window.db = getFirestore(app);
+</script>
   <script src="receipt.js"></script>
 </body>
 </html>
