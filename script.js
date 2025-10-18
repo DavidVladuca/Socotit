@@ -38,7 +38,7 @@ function render() {
     document.getElementById(`${person}-total`).textContent = total.toFixed(2);
   });
 
-  localStorage.setItem('debts', JSON.stringify(debts));
+  saveData();
 }
 
 function addDebt(person) {
@@ -69,9 +69,11 @@ function resetDebts(person) {
   });
 
   debts[person] = [];
-  saveData();
   render();
 }
 
-render();
 loadData();
+
+window.addDebt = addDebt;
+window.resetDebts = resetDebts;
+window.deleteDebt = deleteDebt;
